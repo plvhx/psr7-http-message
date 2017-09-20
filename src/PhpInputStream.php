@@ -6,94 +6,94 @@ use Psr\Http\Message\StreamInterface;
 
 class PhpInputStream implements StreamInterface
 {
-	use StreamTrait;
+    use StreamTrait;
 
-	/**
-	 * @var resource
-	 */
-	private $stream;
+    /**
+     * @var resource
+     */
+    private $stream;
 
-	/**
-	 * @var boolean
-	 */
-	private $seekable;
+    /**
+     * @var boolean
+     */
+    private $seekable;
 
-	/**
-	 * @var string
-	 */
-	private $mode;
+    /**
+     * @var string
+     */
+    private $mode;
 
-	/**
-	 * @var array
-	 */
-	private $metadata;
+    /**
+     * @var array
+     */
+    private $metadata;
 
-	/**
-	 * @var string
-	 */
-	private $cache = '';
+    /**
+     * @var string
+     */
+    private $cache = '';
 
-	public function __construct()
-	{
-		$this->stream = @fopen('php://input', 'rb');
-		$this->metadata = stream_get_meta_data($this->stream);
-		$this->mode = isset($this->metadata['mode'])
-			? $this->metadata['mode']
-			: null;
-		$this->seekable = isset($this->metadata['seekable'])
-			? $this->metadata['seekable']
-			: null;
-	}
+    public function __construct()
+    {
+        $this->stream = @fopen('php://input', 'rb');
+        $this->metadata = stream_get_meta_data($this->stream);
+        $this->mode = isset($this->metadata['mode'])
+            ? $this->metadata['mode']
+            : null;
+        $this->seekable = isset($this->metadata['seekable'])
+            ? $this->metadata['seekable']
+            : null;
+    }
 
-	/**
-	 * {@inheritdoc}
-	 */
-	public function __toString()
-	{
-		if ($this->eof()) {
-			return $this->cache;
-		}
+    /**
+     * {@inheritdoc}
+     */
+    public function __toString()
+    {
+        if ($this->eof()) {
+            return $this->cache;
+        }
 
-		$buffer = $this->getContents();
+        $buffer = $this->getContents();
 
-		return $buffer;
-	}
+        return $buffer;
+    }
 
-	/**
-	 * {@inheritdoc}
-	 */
-	public function isWritable()
-	{
-		return false;
-	}
+    /**
+     * {@inheritdoc}
+     */
+    public function isWritable()
+    {
+        return false;
+    }
 
-	/**
-	 * {@inheritdoc}
-	 */
-	public function read($length)
-	{
-		$content = fread($this->stream, $length);
+    /**
+     * {@inheritdoc}
+     */
+    public function read($length)
+    {
+        $content = fread($this->stream, $length);
 
-		if (!$this->eof()) {
-			$this->cache .= $content;
-		}
+        if (!$this->eof()) {
+            $this->cache .= $content;
+        }
 
-		return $content;
-	}
+        return $content;
+    }
 
-	/**
-	 * {@inheritdoc}
-	 */
-	public function getContents()
-	{
-		$content = stream_get_contents(
-			$this->stream,
-			$this->getSize() - strlen($this->cache),
-			$this->tell()
-		);
+    /**
+     * {@inheritdoc}
+     */
+    public function getContents()
+    {
+        $content = stream_get_contents(
+            $this->stream,
+            $this->getSize() - strlen($this->cache),
+            $this->tell()
+        );
 
-		$this->cache .= $content;
+        $this->cache .= $content;
 
-		return $content;
-	}
+        return $content;
+    }
 }
