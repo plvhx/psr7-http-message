@@ -1,0 +1,32 @@
+{
+    "name": "gandung/http-message",
+    "description": "PSR-7 HTTP Message Implementation in PHP",
+    "type": "library",
+    "require": {
+        "psr/http-message": "^1.0"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^5.7.16 || ^6.0.8"
+    },
+    "license": "BSD-3-Clause",
+    "authors": [
+        {
+            "name": "Paulus Gandung Prakosa",
+            "email": "rvn.plvhx@gmail.com"
+        }
+    ],
+    "minimum-stability": "stable",
+    "autoload": {
+        "psr-4": {
+            "Gandung\\Psr7\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Gandung\\Psr7\\Tests\\": "tests/"
+        }
+    },
+    "provide": {
+        "psr/http-message-implementation": "1.0"
+    }
+}
