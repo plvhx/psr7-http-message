@@ -5,6 +5,7 @@ namespace Gandung\Psr7\Tests;
 use PHPUnit\Framework\TestCase;
 use Gandung\Psr7\Response;
 use Gandung\Psr7\Stream;
+use Gandung\Psr7\PhpTempStream;
 
 class ResponseTest extends TestCase
 {
@@ -183,7 +184,7 @@ class ResponseTest extends TestCase
         $response = new Response($body, $httpCode);
         $this->assertInstanceOf(Response::class, $response);
         $stream = $response->getBody();
-        $this->assertInstanceOf(Stream::class, $stream);
+        $this->assertInstanceOf(PhpTempStream::class, $stream);
         $content = (string)$stream;
         $this->assertInternalType('string', $content);
         $this->assertEquals($body, $content);

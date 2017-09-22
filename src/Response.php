@@ -90,18 +90,16 @@ class Response implements ResponseInterface
     public function __construct($body, $code = 200, $headers = [])
     {
         if (is_scalar($body)) {
-            $stream = fopen('php://temp', 'r+');
-            fwrite($stream, $body);
-            fseek($stream, 0);
-
-            $body = new Stream($stream);
+            $content = (string)$body;
+            $body = new PhpTempStream;
+            $body->write($content);
         }
         
         $this->body = ($body instanceof StreamInterface)
             ? $body
             : (is_resource($body)
                 ? new Stream($body)
-                : new Stream(fopen('php://temp', 'r+')));
+                : new PhpTempStream);
 
         $this->code = $code;
         $this->headers = $headers;

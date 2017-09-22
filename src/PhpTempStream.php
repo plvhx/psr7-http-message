@@ -30,7 +30,7 @@ class PhpTempStream implements StreamInterface
 
     public function __construct()
     {
-        $this->stream = @fopen('php://temp', 'w+b');
+        $this->stream = @fopen('php://temp', 'r+');
 
         if (!is_resource($this->stream)) {
             throw new \RuntimeException(

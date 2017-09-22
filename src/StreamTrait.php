@@ -5,12 +5,30 @@ namespace Gandung\Psr7;
 trait StreamTrait
 {
     /**
+     * fopen() like stream permissions hashmap.
+     *
+     * @var array
+     */
+    private $permissions = [
+        'readable' => [
+            'r',   'rb',  'r+', 'r+b', 'rb+', 'w+',
+            'w+b', 'wb+', 'a+', 'a+b', 'ab+', 'x+',
+            'x+b', 'xb+', 'c+', 'c+b', 'cb+'
+        ],
+        'writable' => [
+            'w',   'wb',  'r+', 'r+b', 'rb+', 'w+',
+            'w+b', 'wb+', 'a',  'ab',  'a+',  'a+b',
+            'ab+', 'x',   'xb', 'x+',  'x+b', 'xb+',
+            'c',   'cb',  'c+', 'c+b', 'cb+'
+        ]
+    ];
+
+    /**
      * {@inheritdoc}
      */
     public function __toString()
     {
         $buffer = $this->getContents();
-
         return $buffer;
     }
 
@@ -113,9 +131,7 @@ trait StreamTrait
      */
     public function isWritable()
     {
-        return !preg_match('/^(r\+|w|w\+|a|a\+)(b)?$/', $this->mode)
-            ? false
-            : true;
+        return in_array($this->mode, $this->permissions['writable'], true);
     }
 
     /**
@@ -123,9 +139,7 @@ trait StreamTrait
      */
     public function isReadable()
     {
-        return !preg_match('/^(r|r\+|w\+|a\+)(b)?$/', $this->mode)
-            ? false
-            : true;
+        return in_array($this->mode, $this->permissions['readable'], true);
     }
 
     /**
@@ -179,7 +193,9 @@ trait StreamTrait
             $this->rewind();
         }
         
-        return $this->read($this->getSize());
+        $contents = $this->read($this->getSize());
+
+        return $contents;
     }
 
     /**
