@@ -5,6 +5,9 @@ namespace Gandung\Psr7;
 use Psr\Http\Message\UploadedFileInterface;
 use Psr\Http\Message\StreamInterface;
 
+/**
+ * @author Paulus Gandung Prakosa <rvn.plvhx@gmail.com>
+ */
 class UploadedFile implements UploadedFileInterface
 {
     /**

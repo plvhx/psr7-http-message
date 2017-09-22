@@ -7,6 +7,9 @@ use Psr\Http\Message\UriInterface;
 use Psr\Http\Message\StreamInterface;
 use Gandung\Psr7\Uri;
 
+/**
+ * @author Paulus Gandung Prakosa <rvn.plvhx@gmail.com>
+ */
 class Request implements RequestInterface
 {
     use MessageTrait, RequestTrait;

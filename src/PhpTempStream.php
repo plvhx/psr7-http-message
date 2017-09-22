@@ -4,6 +4,9 @@ namespace Gandung\Psr7;
 
 use Psr\Http\Message\StreamInterface;
 
+/**
+ * @author Paulus Gandung Prakosa <rvn.plvhx@gmail.com>
+ */
 class PhpTempStream implements StreamInterface
 {
     use StreamTrait;

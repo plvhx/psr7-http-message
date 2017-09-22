@@ -6,6 +6,9 @@ use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\StreamInterface;
 use Gandung\Psr7\MessageAbstract;
 
+/**
+ * @author Paulus Gandung Prakosa <rvn.plvhx@gmail.com>
+ */
 class Response implements ResponseInterface
 {
     use MessageTrait;

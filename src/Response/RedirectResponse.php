@@ -5,6 +5,9 @@ namespace Gandung\Psr7\Response;
 use Gandung\Psr7\Response;
 use Psr\Http\Message\UriInterface;
 
+/**
+ * @author Paulus Gandung Prakosa <rvn.plvhx@gmail.com>
+ */
 class RedirectResponse extends Response
 {
     public function __construct($uri, $statusCode = 302, $headers = [])

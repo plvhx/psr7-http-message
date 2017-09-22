@@ -4,6 +4,9 @@ namespace Gandung\Psr7;
 
 use Psr\Http\Message\ServerRequestInterface;
 
+/**
+ * @author Paulus Gandung Prakosa <rvn.plvhx@gmail.com>
+ */
 class ServerRequest implements ServerRequestInterface
 {
     use MessageTrait, RequestTrait;

@@ -6,6 +6,9 @@ use Psr\Http\Message\UriInterface;
 use Psr\Http\Message\UploadedFileInterface;
 use Gandung\Psr7\Uri;
 
+/**
+ * @author Paulus Gandung Prakosa <rvn.plvhx@gmail.com>
+ */
 class ServerRequestFactory
 {
     public static function createFromGlobals(

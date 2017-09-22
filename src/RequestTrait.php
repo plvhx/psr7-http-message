@@ -4,6 +4,9 @@ namespace Gandung\Psr7;
 
 use Psr\Http\Message\UriInterface;
 
+/**
+ * @author Paulus Gandung Prakosa <rvn.plvhx@gmail.com>
+ */
 trait RequestTrait
 {
     /**

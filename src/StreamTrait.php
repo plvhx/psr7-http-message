@@ -2,6 +2,9 @@
 
 namespace Gandung\Psr7;
 
+/**
+ * @author Paulus Gandung Prakosa <rvn.plvhx@gmail.com>
+ */
 trait StreamTrait
 {
     /**
