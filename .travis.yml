@@ -1,0 +1,27 @@
+language: php
+cache: false
+
+sudo: false
+
+php:
+  - 7.1
+  - nightly
+  - hhvm
+
+before_script:
+  - composer install
+  - composer update
+
+script:
+  - mkdir -p build/logs
+  - ./vendor/bin/phpunit --debug --verbose --coverage-clover ./clover.xml
+  - ./vendor/bin/phpcs
+
+after_script:
+  - php vendor/bin/coveralls -v
+
+matrix:
+  fast_finish: true
+  allow_failures:
+    - php: hhvm
+    - php: nightly
