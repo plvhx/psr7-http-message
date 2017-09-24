@@ -62,7 +62,7 @@ class ServerRequestFactoryTest extends TestCase
             'foo' => [
                 'name' => [
                     '/tmp/passwd',
-                    '/tmp/info.php'
+                    '/tmp/' . basename(__FILE__)
                 ],
                 'type' => [
                     'text/plain',
@@ -70,7 +70,7 @@ class ServerRequestFactoryTest extends TestCase
                 ],
                 'tmp_name' => [
                     '/etc/passwd',
-                    '/Applications/MAMP/htdocs/info.php'
+                    __FILE__
                 ],
                 'error' => [
                     \UPLOAD_ERR_OK,
@@ -78,7 +78,7 @@ class ServerRequestFactoryTest extends TestCase
                 ],
                 'size' => [
                     filesize('/etc/passwd'),
-                    filesize('/Applications/MAMP/htdocs/info.php')
+                    filesize(__FILE__)
                 ]
             ]
         ];
