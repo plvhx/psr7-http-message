@@ -7,9 +7,9 @@ use Gandung\Psr7\Response\EmptyResponse;
 
 class EmptyResponseTest extends TestCase
 {
-	public function testCanGetInstance()
-	{
-		$response = new EmptyResponse();
-		$this->assertInstanceOf(EmptyResponse::class, $response);
-	}
+    public function testCanGetInstance()
+    {
+        $response = new EmptyResponse();
+        $this->assertInstanceOf(EmptyResponse::class, $response);
+    }
 }
