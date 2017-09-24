@@ -158,7 +158,7 @@ trait StreamTrait
 
         $q = fwrite($this->stream, $string);
 
-        if ($q == false) {
+        if ($q === false) {
             throw new \RuntimeException(
                 "Unable to write data to current stream."
             );
@@ -176,7 +176,7 @@ trait StreamTrait
             );
         }
 
-        $content = @fread($this->stream, $length);
+        $content = fread($this->stream, $length);
 
         if (false === $content) {
             throw new \RuntimeException(

@@ -175,7 +175,7 @@ class UploadedFile implements UploadedFileInterface
      */
     public function getSize()
     {
-        $size = @filesize($this->file);
+        $size = filesize($this->file);
 
         return is_int($this->size)
             ? $this->size
