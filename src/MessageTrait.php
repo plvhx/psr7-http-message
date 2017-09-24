@@ -123,9 +123,11 @@ trait MessageTrait
                 ? $value
                 : [$value];
         } else {
-            $q->headers[$name] = array_merge($q->headers[$name], is_array($value)
-                ? $value
-                : [$value]
+            $q->headers[$name] = array_merge(
+                $q->headers[$name],
+                is_array($value)
+                    ? $value
+                    : [$value]
             );
         }
 
