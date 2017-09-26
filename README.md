@@ -107,3 +107,74 @@ $uri = (new Uri())
 	->withQuery('api_version=1.0');
 $request = new Request('GET', $uri);
 ```
+
+# Stream
+
+## File stream
+
+```
+use Gandung\Psr7\FileStream;
+
+$stream = new FileStream('your-file', 'r');
+```
+
+## ```php://input``` stream
+
+```
+use Gandung\Psr7\PhpInputStream;
+
+$stream = new PhpInputStream;
+```
+
+## ```php://temp``` stream
+
+```
+use Gandung\Psr7\PhpTempStream;
+
+$stream = new PhpTempStream;
+$stream->write('this is a text.');
+
+echo sprintf("%s\n", (string)$stream);
+```
+
+## Common Stream
+
+```
+use Gandung\Psr7\Stream;
+
+$handler = fopen('your-file', 'r');
+fseek($handler, 0);
+fwrite($handler, 'this is a text.');
+$stream = new Stream($handler);
+
+echo sprintf("%s\n", (string)$stream);
+```
+
+# URI
+
+## With whole constructed URI (RFC 3986)
+
+```
+use Gandung\Psr7\Uri;
+
+$uri = new Uri('http://user:password@example.com:13123/a/b/c?foo=bar#fragment');
+
+echo sprintf("%s\n", $uri);
+```
+
+## With separated URI components immutably
+
+```
+use Gandung\Psr7\Uri;
+
+$uri = (new Uri())
+	->withScheme('http')
+	->withUserInfo('user', 'password')
+	->withHost('example.com')
+	->withPort(13123)
+	->withPath('/a/b/c')
+	->withQuery('foo=bar')
+	->withFragment('fragment');
+
+echo sprintf("%s\n", $uri);
+```
