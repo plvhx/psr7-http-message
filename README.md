@@ -178,3 +178,40 @@ $uri = (new Uri())
 
 echo sprintf("%s\n", $uri);
 ```
+
+# File Upload
+
+## This works in SAPI and non-SAPI PHP environment
+
+```
+use Gandung\Psr7\UploadedFile;
+
+$uploadedFile = new UploadedFile(
+	'source-file',
+	'destination-file',
+	\UPLOAD_ERR_OK
+);
+```
+
+# Server Request
+
+## Only with URI
+
+```
+use Gandung\Psr7\ServerRequest;
+
+$uri = (new Uri())
+	->withScheme('http')
+	->withHost('example.com')
+	->withPath('/a/b/c')
+	->withQuery('foo=bar');
+$request = new ServerRequest($uri);
+```
+
+## From PHP superglobal variables
+
+```
+use Gandung\Psr7\ServerRequestFactory;
+
+$request = ServerRequestFactory::createFromGlobals();
+```
