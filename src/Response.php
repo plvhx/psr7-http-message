@@ -104,7 +104,7 @@ class Response implements ResponseInterface
                 ? new Stream($body)
                 : new PhpTempStream);
 
-        $this->code = $code;
+        $this->statusCode = $code;
         $this->headers = $headers;
         $this->reasonPhrase = $this->status[$this->code];
     }
