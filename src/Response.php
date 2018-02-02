@@ -131,9 +131,9 @@ class Response implements ResponseInterface
         }
 
         $q = clone $this;
-        $q->code = $code;
+        $q->statusCode = $code;
         $q->reasonPhrase = empty($reasonPhrase)
-            ? $q->status[$q->code]
+            ? $q->status[$q->statusCode]
             : $reasonPhrase;
 
         return $q;
