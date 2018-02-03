@@ -156,6 +156,15 @@ trait StreamTrait
             );
         }
 
+        if (!$this->isWritable()) {
+            throw new \RuntimeException(
+                sprintf(
+                    "Current stream is not writable. (Stream hash code: %s)\n",
+                    \spl_object_hash($this)
+                )
+            );
+        }
+
         $q = fwrite($this->stream, $string);
 
         if ($q === false) {
@@ -173,6 +182,15 @@ trait StreamTrait
         if (is_null($this->stream)) {
             throw new \RuntimeException(
                 "Stream is not initialized."
+            );
+        }
+
+        if (!$this->isReadable()) {
+            throw new \RuntimeException(
+                sprintf(
+                    "Current stream is not readable. (Stream hash code: %s)\n",
+                    \spl_object_hash($this)
+                )
             );
         }
 
