@@ -31,7 +31,12 @@ trait StreamTrait
      */
     public function __toString()
     {
-        $buffer = $this->getContents();
+        try {
+            $buffer = $this->getContents();
+        } catch (\RuntimeException $e) {
+            return '';
+        }
+
         return $buffer;
     }
 
