@@ -106,7 +106,7 @@ class Response implements ResponseInterface
 
         $this->statusCode = $code;
         $this->headers = $headers;
-        $this->reasonPhrase = $this->status[$this->code];
+        $this->reasonPhrase = $this->status[$this->statusCode];
     }
 
     /**
